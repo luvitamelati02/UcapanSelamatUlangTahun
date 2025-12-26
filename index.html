@@ -155,11 +155,12 @@
 
   /* RESPONSIVE HP */
   @media(max-width:500px){
-    .container-utama{
-      margin-top:-80px;
-      height:90vh;
-    }
+  .container-utama{
+    margin-top:20px;   /* dari -80px jadi 20px */
+    height:auto;
   }
+}
+
 </style>
 
 </head>
@@ -193,9 +194,6 @@
   <!-- MUSIK -->
   <div class="musik-container" id="musicBox">
     <audio id="music" src="audio/kekal.mp3"></audio>
-    <button class="music-btn" onclick="playMusic()">
-      🎶 Putar Musiknya
-    </button>
   </div>
 
 </div>
@@ -241,7 +239,7 @@ function bukaKardus(){
 
   // Waktu yang diinginkan (dalam detik)
   const startTime = 125;   // 2 menit 10 detik
-  const endTime   = 255;   // 4 menit 15 detik
+  const endTime   = 260;   // 4 menit 15 detik
 
   // AUTOPLAY setelah user berinteraksi (aturan browser)
   window.addEventListener("click", () => {
