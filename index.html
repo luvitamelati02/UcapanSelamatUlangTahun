@@ -31,7 +31,7 @@
     to   { background-position: 100px 200px; }
   }
 
-  /* angka 22 + love jatuh */
+  /* angka 21 + love jatuh */
   .twenty-two {
     position: absolute;
     top: -50px;
@@ -54,10 +54,10 @@
     height:100vh;
     display:flex;
     flex-direction:column;
-    justify-content:center;
+    justify-content:flex-start;  /* posisi konten agak ke atas */
     align-items:center;
     text-align:center;
-    padding:15px;
+    padding:30px 15px 15px 15px;  /* top padding lebih besar supaya kotak tidak terlalu ke atas */
   }
 
   /* box utama / klik */
@@ -99,23 +99,23 @@
   /* FOTO ATAS */
   .foto-atas {
     width:100%;
-    height:230px;
+    height:200px;  /* lebih kecil */
     border-radius:12px;
     background-image:url('potomas.jpeg');
     background-size:cover;
     background-position:center;
-    margin-bottom:15px;
+    margin-bottom:12px;
   }
 
   /* FOTO BAWAH */
   .foto-bawah {
     width:100%;
-    height:230px;
+    height:200px;  /* lebih kecil */
     border-radius:12px;
     background-image:url('potomas2.jpeg');
     background-size:cover;
     background-position:center;
-    margin-top:15px;
+    margin-top:12px;
   }
 
   /* TEXT BOX */
@@ -154,10 +154,21 @@
   .music-btn:hover { transform:scale(1.05); }
 
   /* RESPONSIVE HP */
-  @media(max-width:500px){
+@media(max-width:500px){
   .container-utama{
-    margin-top:auto;   /* dari -80px jadi 20px */
-    height:auto;
+    height:auto;           /* menyesuaikan isi, tidak terlalu besar */
+    margin-top:15px;       /* posisi naik */
+    padding:15px;
+    justify-content:flex-start; /* konten tetap di atas */
+  }
+  .foto-atas, .foto-bawah {
+    height:160px;          /* lebih kecil agar muat layar HP */
+    margin-bottom:10px;    /* jarak antar elemen */
+    margin-top:10px;
+  }
+  .ucapan-konten {
+    padding:15px;
+    font-size:0.95rem;
   }
 }
 
@@ -198,14 +209,14 @@
 
 </div>
 
-<!-- LOVE & 22 jatuh -->
+<!-- LOVE & 21 jatuh -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const jumlah = 45;
   for(let i=0;i<jumlah;i++){
     const span=document.createElement("span");
     span.className="twenty-two";
-    span.innerText = Math.random()>0.5 ? "22" : "💜";
+    span.innerText = Math.random()>0.5 ? "21" : "💜";
     span.style.left = Math.random()*100 + "vw";
     span.style.animationDelay = Math.random()*6 + "s";
     span.style.fontSize = (Math.random()*1.3+1) + "rem";
@@ -231,28 +242,22 @@ function bukaKardus(){
 </script>
 
 <!-- ATUR MENIT AUDIO -->
-<!-- ======================== AUDIO ========================= -->
 <audio id="musik" src="audio.mp3"></audio>
 
 <script>
   const audio = document.getElementById("musik");
+  const startTime = 125; // 2 menit 5 detik
+  const endTime   = 260; // 4 menit 20 detik
 
-  // Waktu yang diinginkan (dalam detik)
-  const startTime = 125;   // 2 menit 10 detik
-  const endTime   = 260;   // 4 menit 15 detik
-
-  // AUTOPLAY setelah user berinteraksi (aturan browser)
   window.addEventListener("click", () => {
-    // Set posisi audio ke waktu mulai
     audio.currentTime = startTime;
     audio.play();
   }, { once: true });
 
-  // Hentikan saat sudah melewati waktu akhir
   audio.addEventListener("timeupdate", () => {
     if (audio.currentTime >= endTime) {
       audio.pause();
-      audio.currentTime = startTime; // balik lagi supaya bisa play ulang kalau user klik
+      audio.currentTime = startTime;
     }
   });
 </script>
